@@ -3,6 +3,8 @@ import time
 
 zapdos = Actor("zapdos")
 message = "Click the bird!"
+WIDTH = 1000
+HEIGHT = 800
 score = 0
 
 def draw():
@@ -14,8 +16,8 @@ def draw():
     zapdos.draw()    
     
 def place_zapdos():
-    zapdos.x = randint(10, 800)
-    zapdos.y = randint(10, 600)
+    zapdos.x = randint(10, (WIDTH - 10))
+    zapdos.y = randint(10, (HEIGHT - 10))
 
 def reset_zapdos_image():
     zapdos.image = "zapdos"
