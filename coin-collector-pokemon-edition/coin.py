@@ -20,6 +20,10 @@ def draw():
     if game_over:
         screen.fill("crimson")
         screen.draw.text("Final Score: " + str(score), topleft=(10,10), fontsize=60)
+        screen.draw.text("Time's up!", color="pink", topleft=(90,90), fontsize=45)
+    
+def reset_shark_image():
+    shark.image = "garchomp"
     
 def place_coin():
     coin.x = randint(20, (WIDTH - 20))
@@ -46,6 +50,8 @@ def update():
     if coin_collected:
         score = score + 10
         sounds.coincollect.play()
+        shark.image = "igotacoin"
+        clock.schedule(reset_shark_image, 0.5)  # Reset image after 0.5 seconds
         place_coin()
         
 clock.schedule(time_up, 20.0)
