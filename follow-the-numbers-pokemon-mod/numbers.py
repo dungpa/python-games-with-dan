@@ -9,6 +9,7 @@ lines = []
 next_diglett = 0
 game_won = False
 game_over = False
+message = "Connect the Pokemon!"
 
 diglett_count = randint(6, 12)
 
@@ -26,27 +27,26 @@ def draw():
         screen.draw.text("Time's up, so try again!", color="pink", topleft=(90,90), fontsize=45)
     else:
         screen.fill("khaki")
+        screen.draw.text(message, topleft=(20, 20))
         number = 1
         for diglett in digletts:
             screen.draw.text(str(number), (diglett.pos[0], diglett.pos[1] + 18))
             diglett.draw()
-            number = number + 1
+            number += 1
         for line in lines:
             screen.draw.line(line[0], line[1], (70, 130, 180))
         
 def on_mouse_down(pos):
-    global next_diglett
-    global lines
-    global game_won
-    global diglett_count
+    global next_diglett, lines, game_won, diglett_count, message
     
     if game_won:
         return
 
     if digletts[next_diglett].collidepoint(pos):
-        if next_diglett:
+        if next_diglett > 0:
             lines.append((digletts[next_diglett - 1].pos, digletts[next_diglett].pos))
-        next_diglett = next_diglett + 1
+        next_diglett += 1
+        message = "Digletts: Ouch! What are those lines connecting each of us together?"
         
         if next_diglett == diglett_count:
             game_won = True
@@ -54,6 +54,7 @@ def on_mouse_down(pos):
     else:
         lines = []
         next_diglett = 0
+        message = "You clicked in the wrong place!"
         
 def time_up():
     global game_over
