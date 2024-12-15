@@ -12,6 +12,7 @@ game_over = False
 message = "Connect the Pokemon!"
 
 diglett_count = randint(6, 12)
+life_count = 3
 
 for diglett in range(0, diglett_count):
     actor = Actor("diglett")
@@ -24,10 +25,11 @@ def draw():
         screen.draw.text("Congratulations, player because You Won!", color="light cyan", topleft=(90, 90), fontsize=45)
     elif game_over:
         screen.fill("crimson")
-        screen.draw.text("Time's up, so try again!", color="pink", topleft=(90,90), fontsize=45)
+        screen.draw.text("Game over, so try again!", color="pink", topleft=(90,90), fontsize=45)
     else:
         screen.fill("khaki")
         screen.draw.text(message, topleft=(20, 20))
+        screen.draw.text("Lives: " + str(life_count), color="dark khaki", topleft=(WIDTH - 70, 10))
         number = 1
         for diglett in digletts:
             screen.draw.text(str(number), (diglett.pos[0], diglett.pos[1] + 18))
@@ -37,7 +39,7 @@ def draw():
             screen.draw.line(line[0], line[1], (70, 130, 180))
         
 def on_mouse_down(pos):
-    global next_diglett, lines, game_won, diglett_count, message
+    global next_diglett, lines, game_won, game_over, message, diglett_count, life_count
     
     if game_won:
         return
@@ -55,6 +57,9 @@ def on_mouse_down(pos):
         lines = []
         next_diglett = 0
         message = "You clicked in the wrong place!"
+        life_count -= 1
+        if life_count == 0:
+            game_over = True
         
 def time_up():
     global game_over
