@@ -79,17 +79,17 @@ def on_mouse_down(pos):
     for star in stars:
         if star.collidepoint(pos):
             if "red" in star.image:
-                red_star_click()
+                click_red_star()
             else:
                 handle_game_over()
                 
-def red_star_click():
+def click_red_star():
     global current_level, stars, animations, game_complete
     stop_animations(animations)
     if current_level == FINAL_LEVEL:
         game_complete = True
     else:
-        current_level = current_level + 1
+        current_level += 1
         stars = []
         animations = []
        
