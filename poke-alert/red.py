@@ -16,6 +16,8 @@ current_level = 1
 stars = []
 animations = []
 
+sounds.bossfight.play()
+
 def draw():
     global stars, current_level, game_over, game_complete
     screen.clear()
