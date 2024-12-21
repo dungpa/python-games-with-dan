@@ -86,3 +86,4 @@ def update_time_left():
         game_over()
         
 clock.schedule_interval(update_time_left, 1.0)
+sounds.quiz.play()
