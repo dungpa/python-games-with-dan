@@ -19,15 +19,15 @@ answer_boxes = [answer_box1, answer_box2, answer_box3, answer_box4]
 score = 0
 time_left = 10
 
-q1 = ["What is the capital of France?", "London", "Paris", "Berlin", "Tokyo", 2]
+q1 = ["What is the capital of Vietnam?", "Ho Chi Minh City", "Hanoi", "Hue", "Da Nang", 2]
 
-q2 = ["What is 5 + 7?", "12", "10", "14", "8", 1]
+q2 = ["What is 23 times 42?", "966", "942", "923", "934", 1]
 
-q3 = ["What is the seventh month of the year?", "April", "May", "June", "July", 4]
+q3 = ["What is the crocodile with the strongest bite ever?", "Saltwater", "American", "Cuban", "Nile", 4]
 
-q4 = ["Which planet is closest to the Sun?", "Saturn", "Neptune", "Mercury", "Venus", 3]
+q4 = ["Who is the largest shark in Hungry Shark World, Biddyboo Edition?", "Dakuwaqa", "Poseidron", "B3rserk Boo", "Oracle", 3]
 
-q5 = ["Where are the pyramids?", "India", "Egypt", "Morocco", "Canada", 2]
+q5 = ["What type is Aggron?", "Steel and Rock", "Steel and Ground", "Ground and Rock", "Rock and Fighting", 1]
 
 questions = [q1, q2, q3, q4, q5]
 question = questions.pop(0)
