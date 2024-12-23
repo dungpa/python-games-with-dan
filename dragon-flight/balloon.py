@@ -22,6 +22,8 @@ score = 0
 number_of_updates = 0
 
 scores = []
+game_theme = sounds.dragonflying
+game_theme.play(loops=-1)
 
 def update_high_scores():
     global score, scores
@@ -115,7 +117,7 @@ def update():
             game_over = True
             update_high_scores()
             
-        if dragon.collidepoint(bird.x, bird.y) or dragon.collidepoint(house.x, house.y) or dragon.collidepoint(tree.x, tree.y):
+        if dragon.collidepoint(bird.pos) or dragon.collidepoint(house.pos) or dragon.collidepoint(tree.pos):
             game_over = True
             update_high_scores()
        
