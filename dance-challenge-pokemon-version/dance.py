@@ -50,7 +50,7 @@ def draw():
         screen.clear()
         screen.blit("stage", (0, 0))
         screen.draw.text("Score: " + str(score), color="black", topleft=(10, 10))
-        screen.draw.text("GAME OVER!", color="black", topleft=(CENTRE_X - 130, 220), fontsize=60)
+        screen.draw.text("Sorry, player but you are unfortunately victim to a GAME OVER!", color="black", topleft=(CENTRE_X - 250, 220), fontsize=25)
     return
     
 def reset_dinosaur():
@@ -141,35 +141,23 @@ def next_move():
     return
     
 def on_key_up(key):
-    global score, game_over, move_list, current_move
+    global move_list, current_move
+    def process_move(move):
+        global score, game_over
+        update_dinosaur(move)
+        if move_list[current_move] == move:
+            score += 1 
+            next_move()
+        else:
+            game_over = True
     if key == keys.UP:
-        update_dinosaur(0)
-        if move_list[current_move] == 0:
-            score += 1 
-            next_move()
-        else:
-            game_over = True
+        process_move(0)
     elif key == keys.RIGHT:
-        update_dinosaur(1)
-        if move_list[current_move] == 1:
-            score += 1 
-            next_move()
-        else:
-            game_over = True
+        process_move(1)
     elif key == keys.DOWN:
-        update_dinosaur(2)
-        if move_list[current_move] == 2:
-            score += 1 
-            next_move()
-        else:
-            game_over = True
+        process_move(2)
     elif key == keys.LEFT:
-        update_dinosaur(3)
-        if move_list[current_move] == 3:
-            score += 1 
-            next_move()
-        else:
-            game_over = True
+        process_move(3)
     return
     
 def update():
