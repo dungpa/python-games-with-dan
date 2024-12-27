@@ -121,11 +121,9 @@ def mutate():
     global fangflower_vx_list, game_over
     if not game_over and flower_list:
         rand_flower = randint(0, len(flower_list) - 1)
-        fangflower_pos_x = flower_list[rand_flower].x
-        fangflower_pos_y = flower_list[rand_flower].y
+        fangflower = Actor("flowey")
+        fangflower.pos = flower_list[rand_flower].x, flower_list[rand_flower].y
         del flower_list[rand_flower]
-        fangflower = Actor("fangflower")
-        fangflower.pos = fangflower_pos_x, fangflower_pos_y
         fangflower_vx = velocity()
         fangflower_vy = velocity()
         fangflower = fangflower_list.append(fangflower)
