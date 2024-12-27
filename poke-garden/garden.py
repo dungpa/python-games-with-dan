@@ -102,6 +102,7 @@ def check_fangflower_collision():
     for fangflower in fangflower_list:
         if fangflower.colliderect(aggron):
             aggron.image = "zap"
+            sounds.zap.play()
             game_over = True
             break
     return
@@ -182,3 +183,4 @@ def update():
             
 add_flowers()
 wilt_flower()
+sounds.intensetheme.play(loops=-1)
