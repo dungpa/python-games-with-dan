@@ -25,7 +25,7 @@ scores = []
 
 def update_high_scores():
     global score, scores
-    filename = r"C:\Repos\python-games-with-dan\balloon-flight\high-scores.txt"
+    filename = r"C:\Repos\python-games-with-dan\006-balloon-flight\high-scores.txt"
     scores = []
     with open(filename, "r") as file:
         line = file.readline()
