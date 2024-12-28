@@ -114,12 +114,17 @@ def check_for_dragon_collision(lair):
     y_distance = gallade.y - lair["dragon"].y
     distance = math.hypot(x_distance, y_distance)
     if distance < ATTACK_DISTANCE:
+        def handle_dragon_collision():
+            global reset_required
+            reset_required = True
+            def subtract_life():
+                global lives, reset_required, game_over
+                lives -= 1
+                if lives == 0:
+                    game_over = True
+                reset_required = False
+            animate(gallade, pos=GALLADE_START, on_finished=subtract_life)
         handle_dragon_collision()
-    
-def handle_dragon_collision():
-    global reset_required
-    reset_required = True 
-    animate(gallade, pos=GALLADE_START, on_finished=subtract_life)
     
 def check_for_egg_collision(lair):
     global eggs_collected, game_complete
@@ -129,13 +134,6 @@ def check_for_egg_collision(lair):
         sounds.eggcollect.play()
         if eggs_collected >= EGG_TARGET:
             game_complete = True
-            
-def subtract_life():
-    global lives, reset_required, game_over
-    lives -= 1
-    if lives == 0:
-        game_over = True
-    reset_required = False
     
 def update_lairs():
     global lairs, gallade, lives
@@ -145,8 +143,6 @@ def update_lairs():
         elif lair["dragon"].image == "salawake":
             update_waking_dragon(lair)
         update_egg(lair)
-        
-clock.schedule_interval(update_lairs, 1)
 
 def update_sleeping_dragon(lair):
     if lair["sleep_counter"] >= lair["sleep_length"]:
@@ -169,9 +165,6 @@ def update_egg(lair):
             lair["egg_hide_counter"] = 0
         else:
             lair["egg_hide_counter"] += 1
-            
-sounds.difficult.play(loops=-1)
         
-    
-
-            
+clock.schedule_interval(update_lairs, 1)
+sounds.difficult.play(loops=-1)
