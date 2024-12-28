@@ -61,8 +61,10 @@ def draw():
     screen.blit("dungeon", (0, 0))
     if game_over:
         screen.draw.text("GAME OVER!", fontsize=60, center=CENTRE, color=FONT_COLOUR)
+        sounds.difficult.stop()
     elif game_complete:
         screen.draw.text("YOU WON!", fontsize=60, center=CENTRE, color=FONT_COLOUR)
+        sounds.difficult.stop()
     else:
         gallade.draw()
         draw_lairs(lairs)
@@ -124,6 +126,7 @@ def check_for_egg_collision(lair):
     if gallade.colliderect(lair["eggs"]):
         lair["egg_hidden"] = True
         eggs_collected += lair["egg_count"]
+        sounds.eggcollect.play()
         if eggs_collected >= EGG_TARGET:
             game_complete = True
             
@@ -166,6 +169,8 @@ def update_egg(lair):
             lair["egg_hide_counter"] = 0
         else:
             lair["egg_hide_counter"] += 1
+            
+sounds.difficult.play(loops=-1)
         
     
 
