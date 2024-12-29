@@ -19,12 +19,12 @@ score = 0
 max_attempt = 3
 print('Guess the animal!')
 
-guess1 = input('Which bear lives at the North Pole?')
-check_guess(max_attempt, guess1, 'polar bear')
-guess2 = input('Which is the fastest land animal?')
-check_guess(max_attempt, guess2, 'cheetah')
-guess3 = input('Which is the largest animal?')
-check_guess(max_attempt, guess3, 'blue whale')
+questions = ['Which bear lives at the North Pole?', 'Which is the fastest land animal?', 'Which is the largest animal?']
+answers = ['polar bear', 'cheetah', 'blue whale']
+
+for index in range(0, 3):
+    guess = input(questions[index])
+    check_guess(max_attempt, guess, answers[index])
 
 print('Your score is ' + str(score))
 
