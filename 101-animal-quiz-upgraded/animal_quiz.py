@@ -19,10 +19,10 @@ score = 0
 max_attempt = 3
 print('Guess the animal!')
 
-questions = ['Which bear lives at the North Pole?', 'Which is the fastest land animal?', 'Which is the largest animal?']
-answers = ['polar bear', 'cheetah', 'blue whale']
+questions = ['What is the least intelligent shark?', 'What jawless animal has four eyes?', 'Which is the second largest land animal?', 'What is the lizard that lives in the sea?', 'What animal is the graphics of this programming language named after?']
+answers = ['basking shark', 'lamprey', 'asian elephant', 'marine iguana', 'turtle']
 
-for index in range(0, 3):
+for index in range(0, 5):
     guess = input(questions[index])
     check_guess(max_attempt, guess, answers[index])
 
