@@ -20,7 +20,7 @@ def update_clue(guessed_letter, secret_word, clue):
     while index < len(secret_word):
         if guessed_letter == secret_word[index]:
             clue[index] = guessed_letter
-        index = index + 1
+        index += 1
 
 def run_game(lives, clue, guessed_word_correctly, heart_symbol, secret_word):        
     while lives > 0:
@@ -36,7 +36,7 @@ def run_game(lives, clue, guessed_word_correctly, heart_symbol, secret_word):
             update_clue(guess, secret_word, clue)
         else:
             print('Incorrect. You lose a life')
-            lives = lives - 1
+            lives -= 1
             
     if guessed_word_correctly:
         print('You won! The secret word was ' + secret_word)
