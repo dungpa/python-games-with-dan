@@ -14,6 +14,16 @@ def update_clue(guessed_letter, secret_word, clue):
             clue[index] = guessed_letter
         index = index + 1
         
+difficulty = input('Choose difficulty (type 1, 2 or 3):\n 1 Easy\n 2 Normal\n 3 Hard\n')
+difficulty = int(difficulty)
+
+if difficulty == 1:
+    lives = 12
+elif difficulty == 2:
+    lives = 9
+else:
+    lives = 6
+        
 while lives > 0:
     print(clue)
     print('Lives left: ' + heart_symbol * lives)
