@@ -15,3 +15,4 @@ turtle.speed('fast')
 turtle.pensize(4)
 draw_circle(30, 0, 1)
 
+turtle.pencolor('red')
