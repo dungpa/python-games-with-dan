@@ -30,16 +30,16 @@ t.Screen().bgcolor('dark blue')
 draw_star(5, 50, 'yellow', 0, 0)
 
 while True:
-    ranPts = randint(2, 5) * 2 + 1
-    ranSize = randint(25, 75)
-    ranCol = (random(), random(), random())
-    ranX = randint(-350, 300)
-    ranY = randint(-250, 250)
+    ran_pts = randint(2, 5) * 2 + 1
+    ran_size = randint(25, 75)
+    ran_col = (random(), random(), random())
+    ran_x = randint(-350, 300)
+    ran_y = randint(-250, 250)
        
-    draw_star(ranPts, ranSize, ranCol, ranX, ranY)
+    draw_star(ran_pts, ran_size, ran_col, ran_x, ran_y)
     
-    ranCol = (random(), random(), random())
-    ranX = randint(-350, 300)
-    ranY = randint(-250, 250)
+    ran_col = (random(), random(), random())
+    ran_x = randint(-350, 300)
+    ran_y = randint(-250, 250)
        
-    draw_planet(ranCol, ranX, ranY)
+    draw_planet(ran_col, ran_x, ran_y)
