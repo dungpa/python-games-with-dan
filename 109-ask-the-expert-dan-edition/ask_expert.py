@@ -7,9 +7,9 @@ def read_from_file():
             country, city = line.split('/')
             the_world[country] = city
             
-def write_to_file(animal_name, animaltype):
+def write_to_file(animal_name, animal_type):
     with open('ai_data.txt', 'a') as file:
-        file.write('\n' + animal_name + '/' + animaltype)
+        file.write('\n' + animal_name + '/' + animal_type)
 
 print('Ask the Expert - Type of Different Prehistoric Animals')
 root = Tk()
