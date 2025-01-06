@@ -1,0 +1,8 @@
+Megalodon/Shark
+Tyrannosaurus/Dinosaur
+Kronosaurus/Pliosaur
+Tylosaurus/Mosasaur
+Liopleurodon/Pliosaur
+Livyatan/Whale
+Carcharodontosaurus/Dinosaur
+Woolly Mammoth/Elephant
