@@ -3,9 +3,7 @@ import time
 from tkinter import Tk, Canvas, HIDDEN, NORMAL, CHORD, ARC
 
 def next_shape():
-    global shape
-    global previous_color
-    global current_color
+    global shape, previous_color, current_color
     
     previous_color = current_color
     
@@ -27,9 +25,7 @@ def next_shape():
         c.pack()
         
 def snap(event):
-    global shape
-    global player1_score
-    global player2_score
+    global shape, player1_score, player2_score
     valid = False
     
     c.delete(shape)
@@ -39,15 +35,15 @@ def snap(event):
         
     if valid:
         if event.char == 'q':
-            player1_score = player1_score + 1
+            player1_score += 1
         else:
-            player2_score = player2_score + 1
+            player2_score += 1
         shape = c.create_text(200, 200, text='SNAP!, You score 1 point!')
     else:
         if event.char == 'q':
-            player1_score = player1_score - 1
+            player1_score -= 1
         else:
-            player2_score = player2_score - 1
+            player2_score -= 1
         shape = c.create_text(200, 200, text='WRONG! You lose 1 point!')
     c.pack()
     root.update_idletasks
