@@ -1,4 +1,4 @@
-from tkinter import HIDDEN, NORMAL, Tk, Canvas
+from tkinter import HIDDEN, NORMAL, Tk, Canvas, messagebox
 
 def toggle_eyes():
     current_color = c.itemcget(eye_left, 'fill')
@@ -78,6 +78,7 @@ def become_sad():
        c.itemconfigure(mouth_happy, state=HIDDEN)
        c.itemconfigure(mouth_normal, state=HIDDEN)
        c.itemconfigure(mouth_sad, state=NORMAL)
+       messagebox.showinfo('Screen Pet:', 'Why are you ignoring me? :(')
     else:
         c.happy_level -= 1
     root.after(5000, become_sad)
@@ -118,6 +119,8 @@ c.happy_level = 10
 c.eyes_crossed = False
 c.tongue_out = False
 
+root.title('Screen Pet - The Desktop Companion')
+messagebox.showinfo('Greetings from Screen Pet', 'Hello! I am Screen Pet! Nice to meet you :D')
 root.after(1000, blink)
 root.after(5000, become_sad)
 root.mainloop()
