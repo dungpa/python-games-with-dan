@@ -1,7 +1,14 @@
 import random
 import turtle as t
+from pygame import mixer
 
 t.bgcolor('teal')
+
+mixer.init()
+
+backgroundtheme = mixer.Sound('boomusic.wav')
+
+backgroundtheme.play(loops=-1)
 
 caterpillar = t.Turtle()
 caterpillar.shape('circle')
@@ -42,6 +49,7 @@ def game_over():
     leaf.color('teal')
     t.penup()
     t.hideturtle()
+    backgroundtheme.stop()
     t.write('GAME OVER!', align='center', font=('Terminal', 30, 'normal'))
  
 def display_score(current_score):
@@ -80,7 +88,7 @@ def start_game():
             place_leaf()
             caterpillar_length = caterpillar_length + 1
             caterpillar.shapesize(1, caterpillar_length, 1)
-            caterpillar_speed = caterpillar_speed + 2
+            caterpillar_speed = caterpillar_speed + 1.5
             score = score + 10
             display_score(score)
         if outside_window():

@@ -25,7 +25,7 @@ egg_height = 55
 egg_score = 10
 egg_speed = 500
 egg_interval = 4000
-difficulty_factor = 0.95
+difficulty_factor = 0.9
 
 catcher_color = 'medium blue'
 catcher_width = 100
@@ -97,12 +97,12 @@ def increase_score(points):
 def move_left(event):
     (x1, y1, x2, y2) = c.coords(catcher)
     if x1 > 0:
-        c.move(catcher, -20, 0)
+        c.move(catcher, -35, 0)
 
 def move_right(event):
     (x1, y1, x2, y2) = c.coords(catcher)
     if x2 < canvas_width:
-        c.move(catcher, 20, 0)
+        c.move(catcher, 35, 0)
         
 c.bind('<Left>', move_left)
 c.bind('<Right>', move_right)
