@@ -5,6 +5,12 @@ mixer.init()
 
 themusic = mixer.Sound('easylemon.wav')
 
+# Define a function to handle the window close event
+def on_close():
+    themusic.stop()
+    root.destroy()
+
+
 def toggle_eyes():
     current_color = c.itemcget(eye_left, 'fill')
     new_color = c.body_color if current_color == 'white' else 'white'
@@ -126,6 +132,8 @@ c.tongue_out = False
 
 root.title('Screen Pet - The Desktop Companion')
 messagebox.showinfo('Greetings from Screen Pet', 'Hello! I am Screen Pet! Nice to meet you :D')
+themusic.play(loops=-1)
 root.after(1000, blink)
 root.after(5000, become_sad)
+root.protocol("WM_DELETE_WINDOW", on_close)
 root.mainloop()
