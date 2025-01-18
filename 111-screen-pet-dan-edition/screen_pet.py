@@ -1,4 +1,9 @@
 from tkinter import HIDDEN, NORMAL, Tk, Canvas, messagebox
+from pygame import mixer
+
+mixer.init()
+
+themusic = mixer.Sound('easylemon.wav')
 
 def toggle_eyes():
     current_color = c.itemcget(eye_left, 'fill')

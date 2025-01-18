@@ -1,4 +1,7 @@
 import math
+import pygame
+
+pygame.display.set_caption("Sleeping Salamences")
 
 WIDTH = 800
 HEIGHT = 600
@@ -11,7 +14,7 @@ GALLADE_START = (200, 300)
 ATTACK_DISTANCE = 200
 DRAGON_WAKE_TIME = 2
 EGG_HIDE_TIME = 2
-MOVE_DISTANCE = 5
+MOVE_DISTANCE = 1
 
 lives = 3
 eggs_collected = 0
@@ -147,6 +150,7 @@ def update_lairs():
 def update_sleeping_dragon(lair):
     if lair["sleep_counter"] >= lair["sleep_length"]:
         lair["dragon"].image = "salawake"
+        sounds.beam.play()
         lair["sleep_counter"] = 0
     else:
         lair["sleep_counter"] += 1
