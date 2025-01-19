@@ -132,6 +132,7 @@ c.tongue_out = False
 
 root.title('Screen Pet - The Desktop Companion')
 messagebox.showinfo('Greetings from Screen Pet', 'Hello! I am Screen Pet! Nice to meet you :D')
+print('Instructions to Raise Screen Pets: Hover your mouse over your pet to stroke it, click it to make it wink and double-click it to tickle it.')
 themusic.play(loops=-1)
 root.after(1000, blink)
 root.after(5000, become_sad)
