@@ -108,6 +108,7 @@ c.bind('<Left>', move_left)
 c.bind('<Right>', move_right)
 c.focus_set()
 
+print('To play this game, use your right and left arrow key to move the catcher and catch the eggs.')
 root.after(1000, create_egg)
 root.after(1000, move_eggs)
 root.after(1000, check_catch)

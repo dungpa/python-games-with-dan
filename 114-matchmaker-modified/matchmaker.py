@@ -41,6 +41,7 @@ pairs = 0
 button_symbols = {}
 symbols = [u'\u2702', u'\u2702', u'\u2705', u'\u2705', u'\u2708', u'\u2708', u'\u2709', u'\u2709', u'\u270A', u'\u270A', u'\u270B', u'\u270B', u'\u270C', u'\u270C', u'\u270F', u'\u270F', u'\u2712', u'\u2712', u'\u2714', u'\u2714', u'\u2716', u'\u2716', u'\u2728', u'\u2728', u'\u2733', u'\u2733', u'\u2734', u'\u2734', u'\u2744', u'\u2744']
 random.shuffle(symbols)
+print('To match the different buttons, click on each of them to see which match. Then use your memory to match them.')
 
 def close_window():
     root.destroy()
