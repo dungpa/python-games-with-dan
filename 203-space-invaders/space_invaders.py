@@ -38,6 +38,9 @@ class Badguy:
     def off_screen(self):
         return self.y > 640
 
+    def touching(self, missile):
+        return (self.x + 35 - missile.x)**2 + (self.y + 22 - missile.y)**2 <= 1225
+
 class Fighter:
     def __init__(self):
         self.x = 320
@@ -114,6 +117,17 @@ while True:
         if missiles[i].off_screen():
             del missiles[i]
             i -= 1
+        i += 1
+    i = 0
+    while i < len(badguys):
+        j = 0
+        while j < len(missiles):
+            if badguys[i].touching(missiles[j]):
+                del badguys[i]
+                del missiles[j]
+                i -= 1
+                break
+            j += 1
         i += 1
     
     pygame.display.update()
