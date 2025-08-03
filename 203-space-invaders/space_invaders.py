@@ -1,5 +1,6 @@
 import pygame, sys, random, time
 from pygame.locals import *
+
 pygame.init()
 clock = pygame.time.Clock()
 pygame.display.set_caption("Space Invaders")
@@ -11,25 +12,27 @@ fighter_image = pygame.image.load("fighter.png").convert()
 fighter_image.set_colorkey((255, 255, 255))
 missile_image = pygame.image.load("missile.png").convert()
 missile_image.set_colorkey((255, 255, 255))
+GAME_OVER = pygame.image.load("gameover.png").convert()
+font = pygame.font.Font(None, 20)
 
 last_badguy_spawn_time = 0
-
+score = 0
+shots = 0
+hits = 0
+misses = 0
 
 class Badguy:
     def __init__(self):
-        self.x = random.randint(0, 570)
+        self.x = random.randint(0, 520)
         self.y = -100
         self.dy = random.randint(2, 6)
         self.dx = random.choice((-1, 1))*self.dy
         
     def move(self):
-        if self.x < 0 or self.x > 570:
-            self.dx *= -1
         self.x += self.dx
         self.y += self.dy
         
-    def draw(self):
-        screen.blit(badguy_image, (self.x, self.y))
+
     
     def bounce(self):
         if self.x < 0 or self.x > 570:
@@ -41,6 +44,13 @@ class Badguy:
     def touching(self, missile):
         return (self.x + 35 - missile.x)**2 + (self.y + 22 - missile.y)**2 <= 1225
 
+    def score(self):
+        global score
+        score += 100
+
+    def draw(self):
+        screen.blit(badguy_image, (self.x, self.y))
+
 class Fighter:
     def __init__(self):
         self.x = 320
@@ -51,11 +61,22 @@ class Fighter:
         if pressed_keys[K_RIGHT] and self.x < 540:
             self.x += 3
 
-    def draw(self):
-        screen.blit(fighter_image, (self.x, 591))
+
 
     def fire(self):
+        global shots
+        shots += 1
         missiles.append(Missile(self.x + 50))
+
+    def hit_by(self, badguy):
+        return (
+            badguy.y > 546 and
+            badguy.x > self.x - 70 and
+            badguy.x < self.x + 100
+            )
+
+    def draw(self):
+        screen.blit(fighter_image, (self.x, 591))
 
 class Missile:
     def __init__(self,x):
@@ -71,9 +92,6 @@ class Missile:
     def draw(self):
         screen.blit(missile_image, (self.x - 4, self.y))
 
-
-
-badguy = Badguy()
 badguys = []
 fighter = Fighter()
 missiles = []
@@ -89,13 +107,9 @@ while True:
     if time.time() - last_badguy_spawn_time > 0.5:
         badguys.append(Badguy())
         last_badguy_spawn_time = time.time()
-    
-            
+
     screen.fill((0, 0, 0))
-    
-    badguy.move()
-    badguy.bounce()
-    badguy.draw()
+
 
     fighter.move()
     fighter.draw()
@@ -116,18 +130,43 @@ while True:
         missiles[i].draw()
         if missiles[i].off_screen():
             del missiles[i]
+            misses += 1
             i -= 1
         i += 1
+
     i = 0
     while i < len(badguys):
         j = 0
         while j < len(missiles):
             if badguys[i].touching(missiles[j]):
+                badguys[i].score()
+                hits += 1
                 del badguys[i]
                 del missiles[j]
                 i -= 1
                 break
             j += 1
         i += 1
-    
+
+    screen.blit(font.render("Score: " + str(score), True, (255, 255, 255)), (5, 5))
+
+    for badguy in badguys:
+        if fighter.hit_by(badguy):
+            screen.blit(GAME_OVER, (170, 200))
+
+            screen.blit(font.render(str(shots), True, (255, 255, 255)), (266, 320))
+            screen.blit(font.render(str(score), True, (255, 255, 255)), (266, 348))
+            screen.blit(font.render(str(hits), True, (255, 255, 255)), (400, 320))
+            screen.blit(font.render(str(misses), True, (255, 255, 255)), (400, 337))
+            if shots == 0:
+                screen.blit(font.render("--", True, (255, 255, 255)), (400, 357))
+            else:
+                screen.blit(font.render("{:.1f}%".format(100*hits/float(shots)), True, (255, 255, 255)), (400, 357))
+
+            while True:
+                for event in pygame.event.get():
+                    if event.type == QUIT:
+                        sys.exit()
+                pygame.display.update()
+
     pygame.display.update()
